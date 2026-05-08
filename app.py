@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 import joblib
 import numpy as np
 import cv2
@@ -31,9 +32,12 @@ def preprocess_image(image_bytes):
     img_array = np.array(img).flatten() / 255.0
     return img_array.reshape(1, -1)
 
-@app.get("/")
+
+from fastapi.responses import JSONResponse
+
+@app.api_route("/", methods=["GET", "HEAD"])
 async def root():
-    return {"message": "Signature Verification API is running"}
+    return JSONResponse({"message": "Signature Verification API is running"})
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
