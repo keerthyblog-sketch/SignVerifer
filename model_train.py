@@ -56,5 +56,5 @@ def train_model(data_dir):
 
 if __name__ == "__main__":
     # Example usage:
-    # train_model('dataset')
+    train_model('dataset')
     print("This is a template for training. Please provide a dataset directory.")
